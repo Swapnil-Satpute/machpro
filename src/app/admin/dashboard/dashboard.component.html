@@ -1,0 +1,185 @@
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a >Home</a></li>
+    <li class="breadcrumb-item active">Dashboard</li>
+  </ol>
+</nav>
+
+<h5>Dashboard</h5>
+<div class="row">
+  <div class="col-lg-3 pb-3" style="background-color: #e9e6e9">
+    <div class="row">
+
+      <div class="col-11 text-white text-center mx-2 rounded pt-2 pv-2 font-weight-bold" style=" background-color: #a39e9c;">
+        {{Designation|uppercase}}
+      </div>
+
+      <div class="col-12 text-center mt-2">
+        <img src='assets/John.jpg'>
+      </div>
+      <div class="col-12 text-center font-weight-bold pt-2 pb-2" style= " font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+        {{Username}}
+      </div>
+
+      <div class="col-12 text-center pt-2 pb-2" style=" font-family: Arial, Helvetica, sans-serif">
+       TEAM SUMMARY
+      </div>
+
+      <div class="col-12 mb-3">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-item-center">
+            NO. OF TEAM MEMBERS
+            <span class=" badge badge-secondary badge-pill" style=" margin-top: 3px;">{{NoOfTeamMembers}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-item-center">
+              Total Cost of all Project
+              <span class=" badge badge-secondary badge-pill" style=" margin-top: 3px;">${{TotalCostOfAllProject}}k</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-item-center">
+               Pending Task
+                <span class=" badge badge-secondary badge-pill" style=" margin-top: 3px;">{{PendingTask}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-item-center">
+            Upcoming Project
+              <span class=" badge badge-secondary badge-pill" style=" margin-top: 3px;">{{UpComingProjects}}</span>
+        </li>
+        </ul>
+      </div>
+      <div class="col-12 text-center pt-2 pb-3" style="font-family: Arial, Helvetica, sans-serif">CLIENTS</div>
+      <div class="col-12">
+        <ul class=" list-group list-group-flush">
+          <li class="list-group-item" *ngFor=" let client of Client">{{client}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-12 pt-0 pb-2" style=" background-color: #e9e6e6">
+        <div class=" row mt-2">
+
+          <div class=" col-6 text-left">
+            <div class=" dropdown">
+                <select id="project" style="  background-color: #6c757d;border-radius: 8px;color: white;font-size: 18px;"  (change)='onProjectChange($event)'>
+                    <option class="rounded"  *ngFor="let project of Project"  >
+                        {{project}}
+                       </option>
+                     </select>
+        </div>
+      </div>
+      <!--<select id="emp" class="form-control">
+        <option *ngFor="let empobj of Project">
+         {{empobj}}
+        </option>
+      </select>-->
+      <div class="col-6 text-right">
+        <div class=" dropdown">
+            <select id="project" style="  background-color: #6c757d;border-radius: 8px;color: white;font-size: 18px;">
+                <option class="rounded"  *ngFor="let year of Years" (click)='onProjectChange($event)'>
+                    {{year}}
+                   </option>
+                 </select>
+          </div>
+      </div>
+  </div>
+  </div>
+
+    <div class="col-11 mx-auto mt-1 text-white text-center  pt-2 pb-2 mx-auto rounded font-weight-bold" style=" background-color: #718d97; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+    PROJECT BRIEFING
+    </div>
+    <div class="col-12">
+      <table class="table table-borderless">
+        <tr>
+          <td>Project Cost</td>
+          <td>${{ProjectCost}}</td>
+        </tr>
+        <tr>
+            <td>Current Expenditure</td>
+            <td>${{CurrentExpenditure}}</td>
+          </tr>
+          <tr>
+              <td>Available Funds</td>
+              <td>${{AvailableFunds}}</td>
+            </tr>
+
+      </table>
+    </div>
+    <div class="col-11 mx-auto mt-1 text-white text-center  pt-2 pb-2 mx-auto rounded font-weight-bold" style=" background-color: #718d97; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+        TEAM MEMBERS SUMMARY
+    </div>
+    <div class="col-12">
+      <table class="table">
+        <tr>
+          <th>Region</th>
+          <th>Team Members Count</th>
+          <th>Available Members</th>
+        </tr>
+        <tr *ngFor=" let TMS of TeamMembersSummary">
+          <td><b>{{TMS.Region}}</b></td>
+          <td>{{TMS.TeamMembersCount}}</td>
+          <td>{{TMS.AvailableMembers}}</td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  </div>
+
+
+
+
+<div class="col-lg-3" style="background-color: #e9e6e6">
+  <div class="row">
+    <div class="col-11 mx-auto mt-1 text-white text-center pt-1 pb-2 mx-2 rounded font-weight-bold" style="background-color: #718d97">
+      TEAM MEMBER
+    </div>
+    <div class=" col-lg-12 pt-2">
+      <div class="accordion" id="accordion1">
+        <div class="card" *ngFor="let TMS of TeamMember,let i=index">
+          <div class="card-header bg-secondary" id="card1">
+            <h2 class="mb-0">
+              <button class="btn btn-link text-white text-center" type="button" data-toggle="collapse" [attr.data-target]="'#cardbody'+i" (click)="toggle(i)">
+              {{TMS.Region}}</button>
+            </h2>
+          </div>
+          <ng-container *ngIf="show">
+          <div [id]="'cardbody'+i" class="collapse show " data-parent="#accordion">
+            <div class="card-body">
+              <table class="table">
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Status</th>
+                </tr>
+                <tr *ngFor="let mem of TMS.Members">
+                  <td>{{mem.ID}}</td>
+                  <td [style.color]="(mem.Status=='Busy')?'red':'black'">{{mem.Name}}</td>
+                  <td>{{mem.Status}}</td>
+                 <!-- <td><i class="fa fa-phone"><span style="font-weight: 100;">Available</span></i></td>-->
+                </tr>
+
+              </table>
+            </div>
+          </div>
+        </ng-container>
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>

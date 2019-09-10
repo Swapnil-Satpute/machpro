@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<nav class="navbar navbar-expand-sm bg-success navbar-dark">
+<a href="navbar-brand" href="#">
+Angular Task Manager
+</a>
+
+
+<div class="collapse navbar-collapse" id="mynav">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/dashboard']" style="color:white;">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/about']" style="color:white;">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/project']" style="color:white;">Project</a>
+    </li>
+  </ul>
+  <form class="form-inline my-2 my-lg-0">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="search"><i class="fa fa-search"></i></span>
+      </div>
+      <input type="text" class="formControl" placeholder="Search">
+      </div>
+      <button class="btn btn-warrning my2-my-sm-0" type="button" style="background-color: yellow">Search</button>
+  </form>
+</div>
+</nav>
+<div class="container fluid">
+  <router-outlet></router-outlet>
+</div>
